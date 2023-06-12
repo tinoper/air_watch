@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library;
+library iqair_api;
 
 export 'src/iqair_api_base.dart';
 
