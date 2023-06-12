@@ -1,8 +1,3 @@
-enum Status {
-  ok,
-  error,
-}
-
 class AirqualityStatus {
   String status;
   int aqi;

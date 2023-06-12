@@ -17,7 +17,7 @@ The AirQuality Api client is created as a internal package so it could be reused
 
 
 ### Repository Layer
-Repository layer is to abstract our data layer and communicate with bloc layer. It will be easier to change our data provider without affects application-level code.
+Repository layer is to abstract our data layer and communicate with Domain layer. It will be easier to change our data provider without affects application-level code.
 
 
 
