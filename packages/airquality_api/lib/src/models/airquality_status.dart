@@ -1,9 +1,3 @@
-// To parse this JSON data, do
-//
-//     final airqualityStatus = airqualityStatusFromJson(jsonString);
-
-import 'dart:convert';
-
 // TODO: Add JsonSerializable
 class AirqualityStatus {
   String status;
