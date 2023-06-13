@@ -25,9 +25,9 @@ class AirQualityApiClient {
   }) async {
     final airQualityStatusRequest = Uri.https(
       _baseUrlAirQualityApiClient,
-      '/feed',
+      '/feed/$city/',
       {
-        'city': '$city',
+        'token': '73830e02d805ae2f15169048327cb814c27d77e8',
       },
     );
 

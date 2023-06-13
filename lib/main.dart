@@ -1,11 +1,26 @@
+import 'package:airquality_repository/airquality_repository.dart';
+import 'package:airwatch_app/airquality_status/airquality_status.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    AirQualityApp(),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AirQualityApp extends StatelessWidget {
+  const AirQualityApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const AirQualityView();
+  }
+}
+
+class AirQualityView extends StatelessWidget {
+  const AirQualityView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const App(),
+      home: AirQualityPage(),
     );
-  }
-}
-
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

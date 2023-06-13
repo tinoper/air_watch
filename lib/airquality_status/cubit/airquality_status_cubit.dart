@@ -3,7 +3,9 @@ import 'package:airquality_repository/airquality_repository.dart'
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../models/airquality_status.dart';
+import '../models/airquality_status.dart';
+
+// import '../../models/airquality_status.dart';
 
 part 'airquality_status_state.dart';
 
@@ -24,7 +26,7 @@ class AirqualityStatusCubit extends Cubit<AirqualityStatusState> {
       );
       emit(
         state.copyWith(
-            airqualityStatus: airQualityStatus,
+            airQualityStatus: airQualityStatus,
             airQualityStatusEnum: AirQualityStatusEnum.success),
       );
     } on Exception {
