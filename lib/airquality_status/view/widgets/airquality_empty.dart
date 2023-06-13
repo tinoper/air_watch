@@ -1,4 +1,3 @@
-// import 'package:airwatch_app/airquality_status/cubit/cubit/airquality_status_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +20,7 @@ class AirQualityEmpty extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () =>
-              context.read<AirqualityStatusCubit>().getAirQualityStatus('Roma'),
+              context.read<AirqualityStatusCubit>().getAirQualityStatus(''),
           child: const Text(
             "🎲",
             style: TextStyle(fontSize: 100),
