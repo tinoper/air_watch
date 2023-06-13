@@ -1,7 +1,7 @@
 # Get aqi by City
-GET https://api.waqi.info/feed/London/?token=73830e02d805ae2f15169048327cb814c27d77e8
+GET https://api.waqi.info/feed/London/?token={token}}
 
 # Get aqi by LatLong
-//GET https://api.waqi.info/feed/geo:-34.901112;-56.164532/?token=73830e02d805ae2f15169048327cb814c27d77e8
+//GET https://api.waqi.info/feed/geo:-34.901112;-56.164532/?token={token}
 
 

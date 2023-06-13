@@ -4,6 +4,7 @@ import 'package:airquality_repository/airquality_repository.dart'
     show AirQualityRepository;
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../models/airquality_status.dart';
 
@@ -16,17 +17,18 @@ class AirqualityStatusCubit extends Cubit<AirqualityStatusState> {
   final AirQualityRepository _airQualityRepository;
 
   void getAirQualityStatus(String city) async {
+    String apiToken = dotenv.env['API_TOKEN'] ?? '';
+
     if (city.isEmpty) {
       Random random = Random();
       city = cities[random.nextInt(cities.length)];
-      print('selected city $city');
     }
 
     emit(state.copyWith(airQualityStatusEnum: AirQualityStatusEnum.loading));
 
     try {
       final airQualityStatus = AirqualityStatus.fromRepository(
-        await _airQualityRepository.getAirQualityStatus(city),
+        await _airQualityRepository.getAirQualityStatus(city, apiToken),
       );
       emit(
         state.copyWith(

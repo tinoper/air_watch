@@ -20,13 +20,14 @@ class AirQualityApiClient {
 
   /// Fetches [AirQualityStatus]
   Future<AirqualityStatus> getAirQualityStatus({
+    required token,
     required city,
   }) async {
     final airQualityStatusRequest = Uri.https(
       _baseUrlAirQualityApiClient,
       '/feed/$city/',
       {
-        'token': '73830e02d805ae2f15169048327cb814c27d77e8',
+        'token': token,
       },
     );
 

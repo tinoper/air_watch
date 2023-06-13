@@ -9,9 +9,11 @@ class AirQualityRepository {
 
   final AirQualityApiClient _airQualityApiClient;
 
-  Future<AirqualityStatus> getAirQualityStatus(String city) async {
+  Future<AirqualityStatus> getAirQualityStatus(
+      String city, String token) async {
     final airquality = await _airQualityApiClient.getAirQualityStatus(
       city: city,
+      token: token,
     );
     return AirqualityStatus(
       status: airquality.status,
