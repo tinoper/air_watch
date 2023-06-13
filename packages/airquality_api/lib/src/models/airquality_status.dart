@@ -14,21 +14,11 @@ class AirqualityStatus {
     required this.data,
   });
 
-  factory AirqualityStatus.fromRawJson(String str) =>
-      AirqualityStatus.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory AirqualityStatus.fromJson(Map<String, dynamic> json) =>
       AirqualityStatus(
         status: json["status"],
         data: Data.fromJson(json["data"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "data": data.toJson(),
-      };
 }
 
 class Data {
@@ -54,10 +44,6 @@ class Data {
     required this.debug,
   });
 
-  factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         aqi: json["aqi"],
         idx: json["idx"],
@@ -70,18 +56,6 @@ class Data {
         forecast: Forecast.fromJson(json["forecast"]),
         debug: Debug.fromJson(json["debug"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "aqi": aqi,
-        "idx": idx,
-        "attributions": List<dynamic>.from(attributions.map((x) => x.toJson())),
-        "city": city.toJson(),
-        "dominentpol": dominentpol,
-        "iaqi": iaqi.toJson(),
-        "time": time.toJson(),
-        "forecast": forecast.toJson(),
-        "debug": debug.toJson(),
-      };
 }
 
 class Attribution {
@@ -95,22 +69,11 @@ class Attribution {
     this.logo,
   });
 
-  factory Attribution.fromRawJson(String str) =>
-      Attribution.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Attribution.fromJson(Map<String, dynamic> json) => Attribution(
         url: json["url"],
         name: json["name"],
         logo: json["logo"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "url": url,
-        "name": name,
-        "logo": logo,
-      };
 }
 
 class City {
@@ -126,23 +89,12 @@ class City {
     required this.location,
   });
 
-  factory City.fromRawJson(String str) => City.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory City.fromJson(Map<String, dynamic> json) => City(
         geo: List<double>.from(json["geo"].map((x) => x?.toDouble())),
         name: json["name"],
         url: json["url"],
         location: json["location"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "geo": List<dynamic>.from(geo.map((x) => x)),
-        "name": name,
-        "url": url,
-        "location": location,
-      };
 }
 
 class Debug {
@@ -152,17 +104,13 @@ class Debug {
     required this.sync,
   });
 
-  factory Debug.fromRawJson(String str) => Debug.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Debug.fromJson(Map<String, dynamic> json) => Debug(
         sync: DateTime.parse(json["sync"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "sync": sync.toIso8601String(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "sync": sync.toIso8601String(),
+  //     };
 }
 
 class Forecast {
@@ -172,18 +120,13 @@ class Forecast {
     required this.daily,
   });
 
-  factory Forecast.fromRawJson(String str) =>
-      Forecast.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Forecast.fromJson(Map<String, dynamic> json) => Forecast(
         daily: Daily.fromJson(json["daily"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "daily": daily.toJson(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "daily": daily.toJson(),
+  //     };
 }
 
 class Daily {
@@ -197,21 +140,17 @@ class Daily {
     required this.pm25,
   });
 
-  factory Daily.fromRawJson(String str) => Daily.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Daily.fromJson(Map<String, dynamic> json) => Daily(
         o3: List<O3>.from(json["o3"].map((x) => O3.fromJson(x))),
         pm10: List<O3>.from(json["pm10"].map((x) => O3.fromJson(x))),
         pm25: List<O3>.from(json["pm25"].map((x) => O3.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "o3": List<dynamic>.from(o3.map((x) => x.toJson())),
-        "pm10": List<dynamic>.from(pm10.map((x) => x.toJson())),
-        "pm25": List<dynamic>.from(pm25.map((x) => x.toJson())),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "o3": List<dynamic>.from(o3.map((x) => x.toJson())),
+  //       "pm10": List<dynamic>.from(pm10.map((x) => x.toJson())),
+  //       "pm25": List<dynamic>.from(pm25.map((x) => x.toJson())),
+  //     };
 }
 
 class O3 {
@@ -227,10 +166,6 @@ class O3 {
     required this.min,
   });
 
-  factory O3.fromRawJson(String str) => O3.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory O3.fromJson(Map<String, dynamic> json) => O3(
         avg: json["avg"],
         day: DateTime.parse(json["day"]),
@@ -238,13 +173,13 @@ class O3 {
         min: json["min"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "avg": avg,
-        "day":
-            "${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}",
-        "max": max,
-        "min": min,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "avg": avg,
+  //       "day":
+  //           "${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}",
+  //       "max": max,
+  //       "min": min,
+  //     };
 }
 
 class Iaqi {
@@ -266,10 +201,6 @@ class Iaqi {
     required this.t,
   });
 
-  factory Iaqi.fromRawJson(String str) => Iaqi.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Iaqi.fromJson(Map<String, dynamic> json) => Iaqi(
         h: H.fromJson(json["h"]),
         no2: H.fromJson(json["no2"]),
@@ -280,15 +211,15 @@ class Iaqi {
         t: H.fromJson(json["t"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "h": h.toJson(),
-        "no2": no2.toJson(),
-        "o3": o3.toJson(),
-        "p": p.toJson(),
-        "pm10": pm10.toJson(),
-        "pm25": pm25.toJson(),
-        "t": t.toJson(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "h": h.toJson(),
+  //       "no2": no2.toJson(),
+  //       "o3": o3.toJson(),
+  //       "p": p.toJson(),
+  //       "pm10": pm10.toJson(),
+  //       "pm25": pm25.toJson(),
+  //       "t": t.toJson(),
+  //     };
 }
 
 class H {
@@ -298,17 +229,13 @@ class H {
     required this.v,
   });
 
-  factory H.fromRawJson(String str) => H.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory H.fromJson(Map<String, dynamic> json) => H(
         v: json["v"]?.toDouble(),
       );
 
-  Map<String, dynamic> toJson() => {
-        "v": v,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "v": v,
+  //     };
 }
 
 class Time {
@@ -324,10 +251,6 @@ class Time {
     required this.iso,
   });
 
-  factory Time.fromRawJson(String str) => Time.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory Time.fromJson(Map<String, dynamic> json) => Time(
         s: DateTime.parse(json["s"]),
         tz: json["tz"],
@@ -335,10 +258,10 @@ class Time {
         iso: DateTime.parse(json["iso"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "s": s.toIso8601String(),
-        "tz": tz,
-        "v": v,
-        "iso": iso.toIso8601String(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "s": s.toIso8601String(),
+  //       "tz": tz,
+  //       "v": v,
+  //       "iso": iso.toIso8601String(),
+  //     };
 }
