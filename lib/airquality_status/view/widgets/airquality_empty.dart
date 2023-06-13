@@ -13,18 +13,19 @@ class AirQualityEmpty extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Text(
-          "🫙",
-          style: TextStyle(fontSize: 60),
-        ),
-        const Text(
           'Show AirQuality City',
           style: TextStyle(fontSize: 30),
         ),
-        IconButton(
-          onPressed: () => context
-              .read<AirqualityStatusCubit>()
-              .getAirQualityStatus('Mexico'),
-          icon: Icon(Icons.shuffle_on),
+        const SizedBox(
+          height: 30,
+        ),
+        GestureDetector(
+          onTap: () =>
+              context.read<AirqualityStatusCubit>().getAirQualityStatus('Roma'),
+          child: const Text(
+            "🎲",
+            style: TextStyle(fontSize: 100),
+          ),
         ),
       ],
     );

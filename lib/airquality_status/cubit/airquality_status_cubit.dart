@@ -26,11 +26,20 @@ class AirqualityStatusCubit extends Cubit<AirqualityStatusState> {
       );
       emit(
         state.copyWith(
-            airQualityStatus: airQualityStatus,
-            airQualityStatusEnum: AirQualityStatusEnum.success),
+          airQualityStatus: airQualityStatus,
+          airQualityStatusEnum: AirQualityStatusEnum.success,
+          choosenCity: city,
+        ),
       );
     } on Exception {
       emit(state.copyWith(airQualityStatusEnum: AirQualityStatusEnum.failure));
     }
+  }
+
+  void getAnotherCity() {
+    emit(state.copyWith(
+      airQualityStatusEnum: AirQualityStatusEnum.initial,
+      choosenCity: '',
+    ));
   }
 }

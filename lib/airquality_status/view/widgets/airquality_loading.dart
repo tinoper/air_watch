@@ -5,7 +5,7 @@ class AirQualityLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const Padding(
@@ -14,7 +14,7 @@ class AirQualityLoading extends StatelessWidget {
         ),
         const Text(
           'Loading AirQuality Data',
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 30),
         )
       ],
     );

@@ -31,24 +31,24 @@ class ApiQualityView extends StatelessWidget {
         title: const Text('AirQuality Watch'),
       ),
       body: Center(
-          child: BlocConsumer<AirqualityStatusCubit, AirqualityStatusState>(
-        listener: (context, state) => (
-          // TODO: Shows SnackBar error
+        child: BlocBuilder<AirqualityStatusCubit, AirqualityStatusState>(
+          builder: (context, state) {
+            switch (state.airQualityStatusEnum) {
+              case AirQualityStatusEnum.initial:
+                return const AirQualityEmpty();
+              case AirQualityStatusEnum.loading:
+                return const AirQualityLoading();
+              case AirQualityStatusEnum.success:
+                return AirQualitySuccess(
+                  airqualityStatus: state.airQualityStatus,
+                  city: state.choosenCity,
+                );
+              case AirQualityStatusEnum.failure:
+                return const AirQualityError();
+            }
+          },
         ),
-        builder: (context, state) {
-          switch (state.airQualityStatusEnum) {
-            case AirQualityStatusEnum.initial:
-              return const AirQualityEmpty();
-            case AirQualityStatusEnum.loading:
-              return const AirQualityLoading();
-            case AirQualityStatusEnum.success:
-              return AirQualitySuccess(
-                  airqualityStatus: state.airQualityStatus);
-            case AirQualityStatusEnum.failure:
-              return const AirQualityError();
-          }
-        },
-      )),
+      ),
     );
   }
 }
