@@ -245,7 +245,7 @@ void main() {
         final actual = await apiClient.getAirQualityStatus(city: city);
         expect(
           actual,
-          isA<AirqualityStatus>().having((airq) => airq.status, "status", "ok"),
+          isA<AirQualityStatus>().having((airq) => airq.status, "status", "ok"),
         );
       });
     });

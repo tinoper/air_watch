@@ -19,7 +19,7 @@ class AirQualityApiClient {
   final http.Client _httpClient;
 
   /// Fetches [AirQualityStatus]
-  Future<AirqualityStatus> getAirQualityStatus({
+  Future<AirQualityStatus> getAirQualityStatus({
     required token,
     required city,
   }) async {
@@ -45,6 +45,6 @@ class AirQualityApiClient {
       throw AirQualityCityNotFoundFailure();
     }
 
-    return AirqualityStatus.fromJson(bodyJson);
+    return AirQualityStatus.fromJson(bodyJson);
   }
 }

@@ -1,15 +1,14 @@
-// TODO: Add JsonSerializable
-class AirqualityStatus {
+class AirQualityStatus {
   String status;
   Data data;
 
-  AirqualityStatus({
+  AirQualityStatus({
     required this.status,
     required this.data,
   });
 
-  factory AirqualityStatus.fromJson(Map<String, dynamic> json) =>
-      AirqualityStatus(
+  factory AirQualityStatus.fromJson(Map<String, dynamic> json) =>
+      AirQualityStatus(
         status: json["status"],
         data: Data.fromJson(json["data"]),
       );
@@ -101,10 +100,6 @@ class Debug {
   factory Debug.fromJson(Map<String, dynamic> json) => Debug(
         sync: DateTime.parse(json["sync"]),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "sync": sync.toIso8601String(),
-  //     };
 }
 
 class Forecast {
@@ -117,10 +112,6 @@ class Forecast {
   factory Forecast.fromJson(Map<String, dynamic> json) => Forecast(
         daily: Daily.fromJson(json["daily"]),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "daily": daily.toJson(),
-  //     };
 }
 
 class Daily {
@@ -166,14 +157,6 @@ class O3 {
         max: json["max"],
         min: json["min"],
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "avg": avg,
-  //       "day":
-  //           "${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}",
-  //       "max": max,
-  //       "min": min,
-  //     };
 }
 
 class Iaqi {
@@ -204,16 +187,6 @@ class Iaqi {
         pm25: H.fromJson(json["pm25"]),
         t: H.fromJson(json["t"]),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "h": h.toJson(),
-  //       "no2": no2.toJson(),
-  //       "o3": o3.toJson(),
-  //       "p": p.toJson(),
-  //       "pm10": pm10.toJson(),
-  //       "pm25": pm25.toJson(),
-  //       "t": t.toJson(),
-  //     };
 }
 
 class H {
@@ -226,10 +199,6 @@ class H {
   factory H.fromJson(Map<String, dynamic> json) => H(
         v: json["v"]?.toDouble(),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "v": v,
-  //     };
 }
 
 class Time {
@@ -251,11 +220,4 @@ class Time {
         v: json["v"],
         iso: DateTime.parse(json["iso"]),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "s": s.toIso8601String(),
-  //       "tz": tz,
-  //       "v": v,
-  //       "iso": iso.toIso8601String(),
-  //     };
 }
