@@ -19,7 +19,7 @@ class AirQualityApiClient {
   final http.Client _httpClient;
 
   /// Fetches [AirQualityStatus]
-  Future<AirqualityStatus> getAirQualityStatus({
+  Future<AirQualityStatus> getAirQualityStatus({
     required token,
     required city,
   }) async {
@@ -31,8 +31,9 @@ class AirQualityApiClient {
       },
     );
 
-    final airQualityStatusResponse =
-        await _httpClient.get(airQualityStatusRequest);
+    final airQualityStatusResponse = await _httpClient.get(
+      airQualityStatusRequest,
+    );
 
     if (airQualityStatusResponse.statusCode != 200) {
       throw AirQualityCityRequestFailure();
@@ -45,6 +46,6 @@ class AirQualityApiClient {
       throw AirQualityCityNotFoundFailure();
     }
 
-    return AirqualityStatus.fromJson(bodyJson);
+    return AirQualityStatus.fromJson(bodyJson);
   }
 }

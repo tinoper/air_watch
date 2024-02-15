@@ -7,7 +7,7 @@ void main() {
     group('fromJson', () {
       test('return AirQualityStatus object', () {
         expect(
-          AirqualityStatus.fromJson(<String, dynamic>{
+          AirQualityStatus.fromJson(<String, dynamic>{
             "status": "ok",
             "data": {
               "aqi": 34,
@@ -74,9 +74,17 @@ void main() {
               "debug": {"sync": "2023-06-09T18:53:52+09:00"}
             }
           }),
-          isA<AirqualityStatus>()
-              .having((p0) => p0.status, 'status', 'ok')
-              .having((p0) => p0.data.aqi, 'aqi', 34),
+          isA<AirQualityStatus>()
+              .having(
+                (p0) => p0.status,
+                'status',
+                'ok',
+              )
+              .having(
+                (p0) => p0.data.aqi,
+                'aqi',
+                34,
+              ),
         );
       });
     });
