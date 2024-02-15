@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:airquality_repository/airquality_repository.dart'
     show AirQualityRepository;
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../models/airquality_status.dart';
@@ -24,11 +24,18 @@ class AirqualityStatusCubit extends Cubit<AirqualityStatusState> {
       city = cities[random.nextInt(cities.length)];
     }
 
-    emit(state.copyWith(airQualityStatusEnum: AirQualityStatusEnum.loading));
+    emit(
+      state.copyWith(
+        airQualityStatusEnum: AirQualityStatusEnum.loading,
+      ),
+    );
 
     try {
-      final airQualityStatus = AirqualityStatus.fromRepository(
-        await _airQualityRepository.getAirQualityStatus(city, apiToken),
+      final airQualityStatus = AirQualityStatus.fromRepository(
+        await _airQualityRepository.getAirQualityStatus(
+          city,
+          apiToken,
+        ),
       );
       emit(
         state.copyWith(
@@ -38,15 +45,21 @@ class AirqualityStatusCubit extends Cubit<AirqualityStatusState> {
         ),
       );
     } on Exception {
-      emit(state.copyWith(airQualityStatusEnum: AirQualityStatusEnum.failure));
+      emit(
+        state.copyWith(
+          airQualityStatusEnum: AirQualityStatusEnum.failure,
+        ),
+      );
     }
   }
 
   void getAnotherCity() {
-    emit(state.copyWith(
-      airQualityStatusEnum: AirQualityStatusEnum.initial,
-      choosenCity: '',
-    ));
+    emit(
+      state.copyWith(
+        airQualityStatusEnum: AirQualityStatusEnum.initial,
+        choosenCity: '',
+      ),
+    );
   }
 
   List<String> cities = [

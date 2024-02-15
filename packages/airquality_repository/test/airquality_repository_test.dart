@@ -7,7 +7,7 @@ class MockAirQualityApiClient extends Mock
     implements airquality_api.AirQualityApiClient {}
 
 class MockAirQualityStatus extends Mock
-    implements airquality_api.AirqualityStatus {}
+    implements airquality_api.AirQualityStatus {}
 
 void main() {
   group(
@@ -25,7 +25,10 @@ void main() {
 
       group('constructor', () {
         test('internal AirQualityApiClient when not injected', () {
-          expect(AirQualityRepository(), isNotNull);
+          expect(
+            AirQualityRepository(),
+            isNotNull,
+          );
         });
       });
 
@@ -33,15 +36,21 @@ void main() {
         'getAirQualityStatus',
         () {
           const city = 'Roma';
+          const token = '12345';
 
           test('calls getAirQualityStatus', () async {
-            //late AirqualityStatus actual;
             try {
               AirqualityStatus actual =
-                  await airQualityRepository.getAirQualityStatus(city);
+                  await airQualityRepository.getAirQualityStatus(
+                city,
+                token,
+              );
               expect(
                 actual,
-                AirqualityStatus(status: 'ok', aqi: 34),
+                AirqualityStatus(
+                  status: 'ok',
+                  aqi: 34,
+                ),
               );
             } catch (_) {}
           });

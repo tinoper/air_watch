@@ -11,7 +11,9 @@ class AirQualityApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AirWatch',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
         useMaterial3: true,
       ),
       home: const AirQualityPage(),
