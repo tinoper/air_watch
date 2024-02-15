@@ -1,39 +1,41 @@
 import 'package:airquality_repository/airquality_repository.dart'
-    hide AirqualityStatus;
-import 'package:airquality_repository/airquality_repository.dart'
     as airquality_repository;
 
-class AirqualityStatus {
+class AirQualityStatus {
   String status;
   int aqi;
 
-  AirqualityStatus({
+  AirQualityStatus({
     required this.status,
     required this.aqi,
   });
 
-  factory AirqualityStatus.fromJson(Map<String, dynamic> json) {
-    final Data data = Data.fromJson(json["data"]);
+  factory AirQualityStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final Data data = Data.fromJson(
+      json["data"],
+    );
 
-    return AirqualityStatus(
+    return AirQualityStatus(
       status: json["status"],
       aqi: data.aqi,
     );
   }
 
-  static final empty = AirqualityStatus(
+  static final empty = AirQualityStatus(
     status: "",
     aqi: 0,
   );
 
-  factory AirqualityStatus.fromRepository(
-      airquality_repository.AirqualityStatus airqualityStatus) {
-    return AirqualityStatus(
-        status: airqualityStatus.status, aqi: airqualityStatus.aqi);
+  factory AirQualityStatus.fromRepository(
+    airquality_repository.AirqualityStatus airqualityStatus,
+  ) {
+    return AirQualityStatus(
+      status: airqualityStatus.status,
+      aqi: airqualityStatus.aqi,
+    );
   }
-
-  @override
-  List<Object> get props => [status, aqi];
 }
 
 class Data {
@@ -43,7 +45,10 @@ class Data {
     required this.aqi,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Data.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      Data(
         aqi: json["aqi"],
       );
 }

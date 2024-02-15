@@ -6,7 +6,7 @@ void main() {
   group('AirQualityStatus Loading', () {
     testWidgets('show text and progressindicator', (widgetTester) async {
       await widgetTester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: AirQualityLoading(),
           ),

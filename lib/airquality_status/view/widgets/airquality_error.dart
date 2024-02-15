@@ -1,8 +1,5 @@
 import 'package:airwatch_app/airquality_status/view/widgets/custom_refresh.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../cubit/airquality_status_cubit.dart';
 
 class AirQualityError extends StatelessWidget {
   const AirQualityError({super.key});

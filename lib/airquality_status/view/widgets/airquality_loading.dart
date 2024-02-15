@@ -8,11 +8,11 @@ class AirQualityLoading extends StatelessWidget {
     return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(20),
           child: CircularProgressIndicator(),
         ),
-        const Text(
+        Text(
           'Loading AirQuality Data',
           style: TextStyle(fontSize: 30),
         )

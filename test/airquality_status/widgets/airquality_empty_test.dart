@@ -6,7 +6,7 @@ void main() {
   group('AirQualityStatus Empty', () {
     testWidgets('render text and dice', (widgetTester) async {
       await widgetTester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: AirQualityEmpty(),
           ),

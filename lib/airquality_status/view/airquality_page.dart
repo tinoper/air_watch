@@ -1,5 +1,4 @@
 import 'package:airquality_repository/airquality_repository.dart';
-// import 'package:airwatch_app/airquality_status/cubit/cubit/airquality_status_cubit.dart';
 import 'package:airwatch_app/airquality_status/view/widgets/airquality_empty.dart';
 import 'package:airwatch_app/airquality_status/view/widgets/airquality_error.dart';
 import 'package:airwatch_app/airquality_status/view/widgets/airquality_loading.dart';
@@ -28,7 +27,9 @@ class ApiQualityView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AirQuality Watch'),
+        title: const Text(
+          'AirQuality Watch',
+        ),
       ),
       body: Center(
         child: BlocBuilder<AirqualityStatusCubit, AirqualityStatusState>(

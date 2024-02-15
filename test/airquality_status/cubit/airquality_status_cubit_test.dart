@@ -1,4 +1,3 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:airwatch_app/airquality_status/airquality_status.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,7 +17,6 @@ void main() {
   group('AirQualityStatus Cubit', () {
     late airquality_repository.AirqualityStatus airQualityStatus;
     late airquality_repository.AirQualityRepository airQualityStatusRepository;
-    late AirqualityStatusCubit airQualityStatusCubit;
 
     setUp(() async {
       airQualityStatus = MockAirQualityStatus();
@@ -26,9 +24,11 @@ void main() {
       when(() => airQualityStatus.status).thenReturn(status);
       when(() => airQualityStatus.aqi).thenReturn(aqi);
       when(
-        () => airQualityStatusRepository.getAirQualityStatus(any()),
+        () => airQualityStatusRepository.getAirQualityStatus(
+          any(),
+          any(),
+        ),
       ).thenAnswer((_) async => airQualityStatus);
-      airQualityStatusCubit = AirqualityStatusCubit(airQualityStatusRepository);
     });
     test('initial state is correct', () {
       final airQualityStatusCubit =

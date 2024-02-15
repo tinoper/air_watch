@@ -13,7 +13,9 @@ class AirQualityEmpty extends StatelessWidget {
       children: [
         const Text(
           'Show AirQuality City',
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(
+            fontSize: 30,
+          ),
         ),
         const SizedBox(
           height: 30,

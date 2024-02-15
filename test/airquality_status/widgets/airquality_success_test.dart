@@ -4,7 +4,7 @@ import 'package:airwatch_app/airquality_status/airquality_status.dart';
 
 void main() {
   group('AirQuality Success', () {
-    final airQualityStatus = AirqualityStatus(status: 'ok', aqi: 34);
+    final airQualityStatus = AirQualityStatus(status: 'ok', aqi: 34);
 
     testWidgets('render success results', (widgetTester) async {
       await widgetTester.pumpWidget(

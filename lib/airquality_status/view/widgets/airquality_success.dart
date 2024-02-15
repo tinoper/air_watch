@@ -12,14 +12,14 @@ class AirQualitySuccess extends StatelessWidget {
     required this.city,
   });
 
-  final AirqualityStatus airqualityStatus;
+  final AirQualityStatus airqualityStatus;
   final String city;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Background(),
+        const Background(),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

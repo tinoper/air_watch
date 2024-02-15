@@ -5,16 +5,16 @@ enum AirQualityStatusEnum { initial, loading, success, failure }
 class AirqualityStatusState extends Equatable {
   AirqualityStatusState({
     this.airQualityStatusEnum = AirQualityStatusEnum.initial,
-    AirqualityStatus? airQualityStatus,
+    AirQualityStatus? airQualityStatus,
     this.choosenCity = '',
-  }) : airQualityStatus = airQualityStatus ?? AirqualityStatus.empty;
+  }) : airQualityStatus = airQualityStatus ?? AirQualityStatus.empty;
 
-  final AirqualityStatus airQualityStatus;
+  final AirQualityStatus airQualityStatus;
   final AirQualityStatusEnum airQualityStatusEnum;
   final String choosenCity;
 
   AirqualityStatusState copyWith({
-    AirqualityStatus? airQualityStatus,
+    AirQualityStatus? airQualityStatus,
     AirQualityStatusEnum? airQualityStatusEnum,
     String? choosenCity,
   }) {

@@ -4,7 +4,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   try {
-    await dotenv.load(fileName: "assets/.env");
+    await dotenv.load(
+      fileName: "assets/.env",
+    );
   } catch (_) {}
 
   runApp(

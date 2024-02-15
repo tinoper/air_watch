@@ -6,7 +6,7 @@ void main() {
   group('AirQualityStatus Error', () {
     testWidgets('render correct text and monkey', (widgetTester) async {
       await widgetTester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: AirQualityError(),
           ),
