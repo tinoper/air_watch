@@ -10,77 +10,102 @@ class MockResponse extends Mock implements http.Response {}
 class FakeUri extends Fake implements Uri {}
 
 void main() {
-  group('AirQualityApiClient', () {
-    late http.Client httpClient;
-    late AirQualityApiClient apiClient;
+  group(
+    'AirQualityApiClient',
+    () {
+      late http.Client httpClient;
+      late AirQualityApiClient apiClient;
 
-    setUpAll(() {
-      registerFallbackValue(FakeUri());
-    });
-
-    setUp(() {
-      httpClient = MockHttpClient();
-      apiClient = AirQualityApiClient(httpClient: httpClient);
-    });
-
-    group('constructor', () {
-      test('does not require an httpClient', () {
-        expect(AirQualityApiClient(), isNotNull);
-      });
-    });
-
-    group('getAirQualityStatus', () {
-      const city = 'Roma';
-
-      test('correct http request is done', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
-        try {
-          await apiClient.getAirQualityStatus(city: city);
-        } catch (_) {}
-
-        verify(
-          () => httpClient.get(
-            Uri.https('api.waqi.info', '/feed/$city/', {
-              'token': '73830e02d805ae2f15169048327cb814c27d77e8',
-            }),
-          ),
-        ).called(1);
+      setUpAll(() {
+        registerFallbackValue(FakeUri());
       });
 
-      test('throws AirQualityCityRequestFailure', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
-        expect(
-          () async => apiClient.getAirQualityStatus(
-            city: city,
-          ),
-          throwsA(isA<AirQualityCityRequestFailure>()),
+      setUp(() {
+        httpClient = MockHttpClient();
+        apiClient = AirQualityApiClient(
+          httpClient: httpClient,
         );
       });
 
-      test('throws AirQualityCityNotFoundFailure', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        // when(() => response.body).thenReturn('{"status": "error"}');
-        when(() => response.body)
-            .thenReturn('{"status": "error", "data": "Unknown station"}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
-        expect(
-          () async => apiClient.getAirQualityStatus(
-            city: city,
-          ),
-          throwsA(isA<AirQualityCityNotFoundFailure>()),
-        );
+      group('constructor', () {
+        test('does not require an httpClient', () {
+          expect(
+            AirQualityApiClient(),
+            isNotNull,
+          );
+        });
       });
 
-      test('Returns AirQualityStatus valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('''{
+      group(
+        'getAirQualityStatus',
+        () {
+          const city = 'Roma';
+          const token = '123456789';
+
+          test('correct http request is done', () async {
+            final response = MockResponse();
+            when(() => response.statusCode).thenReturn(200);
+            when(() => response.body).thenReturn('{}');
+            when(() => httpClient.get(any())).thenAnswer(
+              (_) async => response,
+            );
+            try {
+              await apiClient.getAirQualityStatus(
+                city: city,
+                token: token,
+              );
+            } catch (_) {}
+
+            verify(
+              () => httpClient.get(
+                Uri.https('api.waqi.info', '/feed/$city/', {
+                  'token': token,
+                }),
+              ),
+            ).called(1);
+          });
+
+          test('throws AirQualityCityRequestFailure', () async {
+            final response = MockResponse();
+            when(() => response.statusCode).thenReturn(400);
+            when(() => httpClient.get(any())).thenAnswer((_) async => response);
+            expect(
+              () async => apiClient.getAirQualityStatus(
+                city: city,
+                token: token,
+              ),
+              throwsA(isA<AirQualityCityRequestFailure>()),
+            );
+          });
+
+          test('throws AirQualityCityNotFoundFailure', () async {
+            final response = MockResponse();
+            when(() => response.statusCode).thenReturn(200);
+            // when(() => response.body).thenReturn('{"status": "error"}');
+            when(() => response.body).thenReturn(
+              '{"status": "error", "data": "Unknown station"}',
+            );
+            when(() => httpClient.get(any())).thenAnswer(
+              (_) async => response,
+            );
+            expect(
+              () async => apiClient.getAirQualityStatus(
+                city: city,
+                token: token,
+              ),
+              throwsA(
+                isA<AirQualityCityNotFoundFailure>(),
+              ),
+            );
+          });
+
+          test(
+            'Returns AirQualityStatus valid response',
+            () async {
+              final response = MockResponse();
+              when(() => response.statusCode).thenReturn(200);
+              when(() => response.body).thenReturn(
+                '''{
            "status": "ok",
           "data": {
             "aqi": 34,
@@ -240,14 +265,27 @@ void main() {
             }
           }
         }
-        ''');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
-        final actual = await apiClient.getAirQualityStatus(city: city);
-        expect(
-          actual,
-          isA<AirQualityStatus>().having((airq) => airq.status, "status", "ok"),
-        );
-      });
-    });
-  });
+        ''',
+              );
+              when(() => httpClient.get(any())).thenAnswer(
+                (_) async => response,
+              );
+              final actual = await apiClient.getAirQualityStatus(
+                city: city,
+                token: token,
+              );
+              expect(
+                actual,
+                isA<AirQualityStatus>().having(
+                  (airq) => airq.status,
+                  "status",
+                  "ok",
+                ),
+              );
+            },
+          );
+        },
+      );
+    },
+  );
 }

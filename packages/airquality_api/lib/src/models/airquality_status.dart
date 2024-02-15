@@ -10,7 +10,9 @@ class AirQualityStatus {
   factory AirQualityStatus.fromJson(Map<String, dynamic> json) =>
       AirQualityStatus(
         status: json["status"],
-        data: Data.fromJson(json["data"]),
+        data: Data.fromJson(
+          json["data"],
+        ),
       );
 }
 
@@ -130,12 +132,6 @@ class Daily {
         pm10: List<O3>.from(json["pm10"].map((x) => O3.fromJson(x))),
         pm25: List<O3>.from(json["pm25"].map((x) => O3.fromJson(x))),
       );
-
-  // Map<String, dynamic> toJson() => {
-  //       "o3": List<dynamic>.from(o3.map((x) => x.toJson())),
-  //       "pm10": List<dynamic>.from(pm10.map((x) => x.toJson())),
-  //       "pm25": List<dynamic>.from(pm25.map((x) => x.toJson())),
-  //     };
 }
 
 class O3 {

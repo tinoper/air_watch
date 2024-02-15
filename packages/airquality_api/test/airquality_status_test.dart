@@ -75,8 +75,16 @@ void main() {
             }
           }),
           isA<AirQualityStatus>()
-              .having((p0) => p0.status, 'status', 'ok')
-              .having((p0) => p0.data.aqi, 'aqi', 34),
+              .having(
+                (p0) => p0.status,
+                'status',
+                'ok',
+              )
+              .having(
+                (p0) => p0.data.aqi,
+                'aqi',
+                34,
+              ),
         );
       });
     });

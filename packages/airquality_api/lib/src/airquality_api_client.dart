@@ -31,8 +31,9 @@ class AirQualityApiClient {
       },
     );
 
-    final airQualityStatusResponse =
-        await _httpClient.get(airQualityStatusRequest);
+    final airQualityStatusResponse = await _httpClient.get(
+      airQualityStatusRequest,
+    );
 
     if (airQualityStatusResponse.statusCode != 200) {
       throw AirQualityCityRequestFailure();
